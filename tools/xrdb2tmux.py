@@ -43,14 +43,16 @@ def main(xrdb_path, output_path=None, light=False):
         # Create the color string
         colors = ":".join(map(lambda x: color_regex.match(x).group(2), colors))
 
+        flag_func = "#([[ '#F' != '' ]] && echo '#F' || echo ' ' )"
+
         scheme_dark = """
 # {name} -- Dark
 set -g status-style bg='{bg}',fg='{fg}'
 set -g window-status-style bg=colour0,fg=colour7
 #set -g window-status-style bg=colour0,fg='{bg}'
 set -g window-status-current-style bg=colour8,fg='{bg}',bold
-set -g window-status-format " #[fg=colour8]#I:#[default]#W#[fg=colour8]#F#[default] "
-set -g window-status-current-format " #I:#W#[fg=colour6]#F#[default] "
+set -g window-status-format " #[fg=colour8]#I:#[default]#W#[fg=colour8]{ffn}#[default] "
+set -g window-status-current-format " #I:#W#[fg=colour6]{ffn}#[default] "
 """
 
         scheme_light = """
@@ -59,8 +61,8 @@ set -g status-style bg='{bg}',fg='{fg}'
 set -g window-status-style bg=colour7,fg=colour8
 #set -g window-status-style bg=colour7,fg='{fg}'
 set -g window-status-current-style bg=colour15,fg='{fg}',bold
-set -g window-status-format " #[fg=colour15]#I:#[default]#W#[fg=colour15]#F#[default] "
-set -g window-status-current-format " #I:#W#[fg=colour6]#F#[default] "
+set -g window-status-format " #[fg=colour15]#I:#[default]#W#[fg=colour15]{ffn}#[default] "
+set -g window-status-current-format " #I:#W#[fg=colour6]{ffn}#[default] "
 """
 
         scheme = scheme_light if light else scheme_dark
@@ -69,7 +71,8 @@ set -g window-status-current-format " #I:#W#[fg=colour6]#F#[default] "
                                pl=colors,
                                bg=bg_color,
                                cr=cursor_color,
-                               fg=fg_color)
+                               fg=fg_color,
+                               ffn=flag_func)
 
         if not output_path:
             print(output)

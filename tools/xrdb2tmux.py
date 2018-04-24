@@ -58,10 +58,12 @@ set -g window-status-current-format " #I:#W#[fg=colour6]{ffn}#[default] "
         scheme_light = """
 # {name} -- Light
 set -g status-style bg='{bg}',fg='{fg}'
-set -g window-status-style bg=colour7,fg=colour8
+set -g window-status-style bg=colour15,fg=colour8
+#set -g window-status-style bg=colour7,fg=colour8
 #set -g window-status-style bg=colour7,fg='{fg}'
-set -g window-status-current-style bg=colour15,fg='{fg}',bold
-set -g window-status-format " #[fg=colour15]#I:#[default]#W#[fg=colour15]{ffn}#[default] "
+set -g window-status-current-style bg=colour7,fg='{bg}',bold
+set -g window-status-format " #[fg=colour7]#I:#[default]#W#[fg=colour7]{ffn}#[default] "
+#set -g window-status-format " #[fg=colour15]#I:#[default]#W#[fg=colour15]{ffn}#[default] "
 set -g window-status-current-format " #I:#W#[fg=colour6]{ffn}#[default] "
 """
 
